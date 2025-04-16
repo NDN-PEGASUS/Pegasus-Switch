@@ -1,0 +1,9 @@
+.vscode
+
+/pclndndpv2/target
+
+/pclndncpv2/bf_drivers.log*
+/pclndncpv2/bfshell_plugin_pclndn.so
+/pclndncpv2/libpclndn.so
+/pclndncpv2/pclndnrouter
+/pclndncpv2/zlog-cfg-cur
