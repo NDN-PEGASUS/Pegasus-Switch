@@ -22,7 +22,7 @@ Pegasus-Switch/
 
 Clone the repository [Pegasus-Switch](https://github.com/NDN-PEGASUS/Pegasus-Switch) to a Tofino2 programmable switch.
 
-First, copy `pclndn.xml` and `types.xml` to `path/to/your/SDE/install/share/cli/xml`
+First, copy [`pclndn.xml`](https://github.com/NDN-PEGASUS/Pegasus-Switch/blob/main/pclndncpv2/pclndn.xml) and [`types.xml`](https://github.com/NDN-PEGASUS/Pegasus-Switch/blob/main/pclndncpv2/types.xml) to `path/to/your/SDE/install/share/cli/xml`
 
 Based on the optimal parsable name format obtained in the [Pegasus-Traffic](https://github.com/NDN-PEGASUS/Pegasus-Traffic), modify the parser implementation in the data plane (`pclndndpv2.p4`).
 
