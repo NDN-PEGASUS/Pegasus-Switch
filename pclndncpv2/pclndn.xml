@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CLISH_MODULE xmlns="http://clish.sourceforge.net/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://clish.sourceforge.net/XMLSchema
+  http://clish.sourceforge.net/XMLSchema/clish.xsd">
+
+<!-- enter pclndn manage view -->
+<VIEW name="root-view">
+  <COMMAND name="pclndn" help="pclndn fib manager commands" view="pclndn-view">
+  </COMMAND>
+</VIEW>
+
+<!--pclndn manager view top level commands -->
+<VIEW name="pclndn-view"  prompt="pclndn&gt; ">
+  <COMMAND name="end" help="End pclndn manager sub-commands" view="root-view"/>
+</VIEW>
+
+<!--pclndn commands -->
+<VIEW name="pclndn-view">
+  <COMMAND name="bitmap" help="port bitmap table entry command">
+    <PARAM name="type" help="Choose command type" mode="switch" ptype="SUBCOMMAND">
+      <PARAM name="add" help="Add port bitmap command" mode="subcommand" ptype="SUBCOMMAND">
+        <PARAM name="key" help="Config with key" mode="subcommand" optional="true" ptype="SUBCOMMAND">
+          <PARAM name="keytype" help="Choose command type" mode="switch" ptype="SUBCOMMAND">
+            <PARAM name="port" help="Port index" mode="subcommand" ptype="SUBCOMMAND">
+              <PARAM name="portid" help="Port index" ptype="PORT" />
+            </PARAM>
+            <PARAM name="area" help="Sub group pipe ID" mode="subcommand" ptype="SUBCOMMAND">
+              <PARAM name="areaId" help="Sub group pipe ID" ptype="AREAID" />
+            </PARAM>
+          </PARAM>
+        </PARAM>
+      </PARAM>
+      <PARAM name="del" help="Del port bitmap command" mode="subcommand" ptype="SUBCOMMAND">
+        <PARAM name="key" help="Config with key" mode="subcommand" optional="true" ptype="SUBCOMMAND">
+          <PARAM name="keytype" help="Choose command type" mode="switch" ptype="SUBCOMMAND">
+            <PARAM name="port" help="Port index" mode="subcommand" ptype="SUBCOMMAND">
+              <PARAM name="portid" help="Port index" ptype="PORT" />
+            </PARAM>
+            <PARAM name="area" help="Sub group pipe ID" mode="subcommand" ptype="SUBCOMMAND">
+              <PARAM name="areaId" help="Sub group pipe ID" ptype="AREAID" />
+            </PARAM>
+          </PARAM>
+        </PARAM>
+      </PARAM>
+      <PARAM name="show" help="Show port bitmap command" mode="subcommand" ptype="SUBCOMMAND">
+        <PARAM name="key" help="Show with key" mode="subcommand" optional="true" ptype="SUBCOMMAND">
+          <PARAM name="keytype" help="Choose command type" mode="switch" ptype="SUBCOMMAND">
+            <PARAM name="port" help="Port index" mode="subcommand" ptype="SUBCOMMAND">
+              <PARAM name="portid" help="Port index" ptype="PORT" />
+            </PARAM>
+            <PARAM name="area" help="Sub group pipe ID" mode="subcommand" ptype="SUBCOMMAND">
+              <PARAM name="areaId" help="Sub group pipe ID" ptype="AREAID" />
+            </PARAM>
+          </PARAM>
+        </PARAM>
+      </PARAM>
+    </PARAM>
+    <ACTION builtin="pclndn_cmd"/>
+  </COMMAND>
+  <COMMAND name="pcct" help="Show the pit register entry by index.">
+    <PARAM name="type" help="Choose command type" mode="switch" ptype="SUBCOMMAND">
+      <PARAM name="show" help="Show mac transform command" mode="subcommand" ptype="SUBCOMMAND">
+        <PARAM name="index-choice" help="Choose a pit register index" mode="switch" ptype="SUBCOMMAND">
+            <PARAM name="ndn" help="Show with ndn name" mode="subcommand" ptype="SUBCOMMAND">
+                <PARAM name="ndn_name" help="Ndn name" ptype="STRING"/>
+            </PARAM>
+            <PARAM name="index" help="Register index." ptype="UINT"/>
+        </PARAM>
+        <PARAM name="pit-tables" help="Choose a pit register table" optional="true" mode="switch" ptype="SUBCOMMAND">
+            <PARAM name="finger" help="Show finger print register table" mode="subcommand" ptype="SUBCOMMAND">
+                <PARAM name="finger-regs" help="Show finger print register table" optional="true" mode="switch" ptype="SUBCOMMAND">
+                    <PARAM name="finger1" help="Show the first finger print register table" mode="subcommand" ptype="SUBCOMMAND"/>
+                    <PARAM name="finger2" help="Show the second finger print register table" mode="subcommand" ptype="SUBCOMMAND"/>
+                </PARAM>
+            </PARAM>
+            <PARAM name="port-bitmap" help="Show interest port bitmap register table" mode="subcommand" ptype="SUBCOMMAND">
+                <PARAM name="port-regs" help="Show interest port bitmap register table" optional="true" mode="switch" ptype="SUBCOMMAND">
+                    <PARAM name="bitmap1" help="Show the first interest port bitmap register table" mode="subcommand" ptype="SUBCOMMAND"/>
+                    <PARAM name="bitmap2" help="Show the second interest port bitmap register table" mode="subcommand" ptype="SUBCOMMAND"/>
+                </PARAM>
+            </PARAM>
+        </PARAM>
+      </PARAM>
+    </PARAM>
+    <ACTION builtin="pclndn_cmd"/>
+  </COMMAND>
+  <COMMAND name="mac" help="Mac transform command">
+    <PARAM name="type" help="Choose command type" mode="switch" ptype="SUBCOMMAND">
+      <PARAM name="add" help="Add mac transform command" mode="subcommand" ptype="SUBCOMMAND">
+        <PARAM name="server" help="Server index" mode="subcommand" ptype="SUBCOMMAND">
+          <PARAM name="serverindex" help="Server index" ptype="SERVERINDEX" />
+        </PARAM>
+        <PARAM name="dmac" help="Dest mac address" mode="subcommand" ptype="SUBCOMMAND">
+          <PARAM name="macaddr" help="Dest mac address" ptype="MACADDR" />
+        </PARAM>
+        <PARAM name="port" help="Output port" mode="subcommand" ptype="SUBCOMMAND">
+          <PARAM name="portid" help="Output port id" ptype="PORT" />
+        </PARAM>
+      </PARAM>
+      <PARAM name="mod" help="Mod mac transform command" mode="subcommand" ptype="SUBCOMMAND">
+        <PARAM name="server" help="Server index" mode="subcommand" ptype="SUBCOMMAND">
+          <PARAM name="serverindex" help="Server index" ptype="SERVERINDEX" />
+        </PARAM>
+        <PARAM name="dmac" help="Dest mac address" mode="subcommand" ptype="SUBCOMMAND">
+          <PARAM name="macaddr" help="Dest mac address" ptype="MACADDR" />
+        </PARAM>
+        <PARAM name="port" help="Output port" mode="subcommand" ptype="SUBCOMMAND">
+          <PARAM name="portid" help="Output port id" ptype="PORT" />
+        </PARAM>
+      </PARAM>
+      <PARAM name="del" help="Del mac transform command" mode="subcommand" ptype="SUBCOMMAND">
+        <PARAM name="server" help="Server index" mode="subcommand" ptype="SUBCOMMAND">
+          <PARAM name="serverindex" help="Server index" ptype="SERVERINDEX" />
+        </PARAM>
+        <PARAM name="dmac" help="Dest mac address" mode="subcommand" ptype="SUBCOMMAND">
+          <PARAM name="macaddr" help="Dest mac address" ptype="MACADDR" />
+        </PARAM>
+      </PARAM>
+      <PARAM name="show" help="Show mac transform command" mode="subcommand" ptype="SUBCOMMAND">
+        <PARAM name="key" help="Show by key" mode="subcommand" optional="true" ptype="SUBCOMMAND">
+          <PARAM name="server" help="Server index" mode="subcommand" ptype="SUBCOMMAND">
+            <PARAM name="serverindex" help="Server index" ptype="SERVERINDEX" />
+          </PARAM>
+          <PARAM name="dmac" help="Dest mac address" mode="subcommand" optional="true" ptype="SUBCOMMAND">
+            <PARAM name="macaddr" help="Dest mac address" ptype="MACADDR" />
+          </PARAM>
+        </PARAM>
+      </PARAM>
+    </PARAM>
+    <ACTION builtin="pclndn_cmd"/>
+  </COMMAND>
+  <COMMAND name="port" help="Port command">
+    <PARAM name="type" help="Choose command type" mode="switch" ptype="SUBCOMMAND">
+      <PARAM name="add" help="Add port bitmap command" mode="subcommand" ptype="SUBCOMMAND">
+        <PARAM name="key" help="Config with key" mode="subcommand" optional="true" ptype="SUBCOMMAND">
+          <PARAM name="keytype" help="Choose command type" mode="switch" ptype="SUBCOMMAND">
+            <PARAM name="port" help="Port index" mode="subcommand" ptype="SUBCOMMAND">
+              <PARAM name="portid" help="Port index" ptype="PORT" />
+            </PARAM>
+            <PARAM name="area" help="Panel area ID" mode="subcommand" ptype="SUBCOMMAND">
+              <PARAM name="areaid" help="Panel area ID" ptype="AREAID" />
+            </PARAM>
+          </PARAM>
+        </PARAM>
+      </PARAM>
+      <PARAM name="del" help="Del port bitmap command" mode="subcommand" ptype="SUBCOMMAND">
+        <PARAM name="key" help="Config with key" mode="subcommand" optional="true" ptype="SUBCOMMAND">
+          <PARAM name="keytype" help="Choose command type" mode="switch" ptype="SUBCOMMAND">
+            <PARAM name="port" help="Port index" mode="subcommand" ptype="SUBCOMMAND">
+              <PARAM name="portid" help="Port index" ptype="PORT" />
+            </PARAM>
+            <PARAM name="area" help="Panel area ID" mode="subcommand" ptype="SUBCOMMAND">
+              <PARAM name="areaid" help="Panel area ID" ptype="AREAID" />
+            </PARAM>
+          </PARAM>
+        </PARAM>
+      </PARAM>
+      <PARAM name="show" help="Show port command" mode="subcommand" ptype="SUBCOMMAND">
+        <PARAM name="key" help="Config with key" mode="subcommand" optional="true" ptype="SUBCOMMAND">
+          <PARAM name="keytype" help="Choose command type" mode="switch" ptype="SUBCOMMAND">
+            <PARAM name="port" help="Port index" mode="subcommand" ptype="SUBCOMMAND">
+              <PARAM name="portid" help="Port index" ptype="PORT" />
+            </PARAM>
+            <PARAM name="area" help="Panel area ID" mode="subcommand" ptype="SUBCOMMAND">
+              <PARAM name="areaid" help="Panel area ID" ptype="AREAID" />
+            </PARAM>
+          </PARAM>
+        </PARAM>
+      </PARAM>
+    </PARAM>
+    <ACTION builtin="pclndn_cmd"/>
+  </COMMAND>
+  <COMMAND name="group" help="Multicast group command">
+    <PARAM name="type" help="Choose command type" mode="switch" ptype="SUBCOMMAND">
+      <PARAM name="add" help="Add multicast group command" mode="subcommand" ptype="SUBCOMMAND"/>
+      <PARAM name="del" help="Del multicast group command" mode="subcommand" ptype="SUBCOMMAND"/>
+      <PARAM name="show" help="Show multicast group command" mode="subcommand" ptype="SUBCOMMAND"/>
+    </PARAM>
+    <PARAM name="key" help="Config with key" mode="subcommand" optional="true" ptype="SUBCOMMAND">
+      <PARAM name="keytype" help="Choose command type" mode="switch" ptype="SUBCOMMAND">
+        <PARAM name="area" help="Panel area ID" mode="subcommand" ptype="SUBCOMMAND">
+          <PARAM name="areaid" help="Panel area ID" ptype="AREAID" />
+        </PARAM>
+        <PARAM name="bitmask" help="Port bitmap bit mask" mode="subcommand" ptype="SUBCOMMAND">
+          <PARAM name="maskid" help="Port bitmap bit mask" ptype="BITMAPBITS" />
+        </PARAM>
+      </PARAM>
+    </PARAM>
+    <ACTION builtin="pclndn_cmd"/>
+  </COMMAND>
+
+  <COMMAND name="server" help="Server number command">
+    <PARAM name="type" help="Choose command type" mode="switch" ptype="SUBCOMMAND">
+      <PARAM name="number" help="Server number command" mode="subcommand" ptype="SUBCOMMAND">
+        <PARAM name="nums" help="Server numbers" ptype="SERVERNUM" />
+      </PARAM>
+      <PARAM name="show" help="Show mac transform command" mode="subcommand" ptype="SUBCOMMAND">
+      </PARAM>
+    </PARAM>
+    <ACTION builtin="pclndn_cmd"/>
+  </COMMAND>
+
+</VIEW>
+
+<PLUGIN name="pclndn"/>
+
+</CLISH_MODULE>
